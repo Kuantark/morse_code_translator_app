@@ -1,0 +1,2 @@
+/Users/don/codes/Morse-Code/morse_code_flutter/android/app/.cxx/RelWithDebInfo/6m604p2t/x86_64/CMakeFiles/edit_cache.dir
+/Users/don/codes/Morse-Code/morse_code_flutter/android/app/.cxx/RelWithDebInfo/6m604p2t/x86_64/CMakeFiles/rebuild_cache.dir
