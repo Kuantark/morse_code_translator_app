@@ -25,11 +25,12 @@ class _HomePageState extends State<HomePage>
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
     _tabController.addListener(() {
-      // Rebuild to update banner visibility when switching tabs
+      // Rebuild to update banner visibility and sync settings UI when switching tabs
       if (!_tabController.indexIsChanging) {
         setState(() {});
       }
     });
+    _audioService.init();
   }
 
   @override
@@ -57,7 +58,7 @@ class _HomePageState extends State<HomePage>
                 TranslatorPage(audioService: _audioService),
                 ChartPage(audioService: _audioService),
                 LearnPage(audioService: _audioService),
-                const SettingsPage(),
+                SettingsPage(audioService: _audioService),
               ],
             ),
           ),

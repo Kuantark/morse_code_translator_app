@@ -84,6 +84,7 @@ class _TranslatorPageState extends State<TranslatorPage> {
                     label: '${settings.wpm.round()} WPM',
                     onChanged: (value) {
                       setModalState(() => settings.wpm = value);
+                      settings.save();
                     },
                   ),
                   const SizedBox(height: 8),
@@ -96,6 +97,7 @@ class _TranslatorPageState extends State<TranslatorPage> {
                     label: '${(settings.volume * 100).round()}%',
                     onChanged: (value) {
                       setModalState(() => settings.volume = value);
+                      settings.save();
                     },
                   ),
                 ],

@@ -10,6 +10,10 @@ class MorseAudioService {
 
   bool get isPlaying => _isPlaying;
 
+  Future<void> init() async {
+    await settings.load();
+  }
+
   Future<void> playMorseCode(String morseString) async {
     if (_isPlaying) return;
     _isPlaying = true;

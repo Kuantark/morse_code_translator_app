@@ -40,6 +40,7 @@ dependencies:
   flutter_sound: ^9.23.1
   permission_handler: ^11.3.1
   google_mobile_ads: ^6.0.0
+  shared_preferences: ^2.5.4
 
 flutter_launcher_icons:
   android: "ic_launcher"
