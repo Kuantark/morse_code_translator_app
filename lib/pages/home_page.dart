@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import '../services/morse_audio_service.dart';
+import '../services/ad_service.dart';
+import '../widgets/banner_ad_widget.dart';
 import 'translator_page.dart';
 import 'chart_page.dart';
 import 'learn_page.dart';
+import 'settings_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,11 +18,18 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final MorseAudioService _audioService = MorseAudioService();
+  final AdService _adService = AdService();
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
+    _tabController.addListener(() {
+      // Rebuild to update banner visibility when switching tabs
+      if (!_tabController.indexIsChanging) {
+        setState(() {});
+      }
+    });
   }
 
   @override
@@ -38,12 +48,22 @@ class _HomePageState extends State<HomePage>
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: TabBarView(
-        controller: _tabController,
+      body: Column(
         children: [
-          TranslatorPage(audioService: _audioService),
-          ChartPage(audioService: _audioService),
-          LearnPage(audioService: _audioService),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                TranslatorPage(audioService: _audioService),
+                ChartPage(audioService: _audioService),
+                LearnPage(audioService: _audioService),
+                const SettingsPage(),
+              ],
+            ),
+          ),
+          // Banner ad - hide on Settings tab and when ads disabled
+          if (_tabController.index != 3 && _adService.adsEnabled)
+            const BannerAdWidget(),
         ],
       ),
       bottomNavigationBar: Material(
@@ -57,6 +77,7 @@ class _HomePageState extends State<HomePage>
             Tab(icon: Icon(Icons.translate), text: "Translator"),
             Tab(icon: Icon(Icons.table_chart), text: "Chart"),
             Tab(icon: Icon(Icons.school), text: "Learn"),
+            Tab(icon: Icon(Icons.settings), text: "Settings"),
           ],
         ),
       ),

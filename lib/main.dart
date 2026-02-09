@@ -1,7 +1,15 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:morse_code_flutter/pages/home_page.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (Platform.isAndroid || Platform.isIOS) {
+    await MobileAds.instance.initialize();
+  }
+
   runApp(const MyApp());
 }
 
