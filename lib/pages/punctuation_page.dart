@@ -3,16 +3,16 @@ import '../models/morse_code_data.dart';
 import '../services/morse_audio_service.dart';
 import '../widgets/morse_reference_table.dart';
 
-class NumberPage extends StatelessWidget {
+class PunctuationPage extends StatelessWidget {
   final MorseAudioService audioService;
 
-  const NumberPage({super.key, required this.audioService});
+  const PunctuationPage({super.key, required this.audioService});
 
   @override
   Widget build(BuildContext context) {
     return MorseReferenceTable(
-      data: MorseCodeData.numberMap,
-      characterLabel: "Number",
+      data: MorseCodeData.punctuationMap,
+      characterLabel: "Symbol",
       getSoundDescription: MorseCodeData.getMorseSound,
       onPlayPressed: (character) => audioService.playCharacter(character),
     );
