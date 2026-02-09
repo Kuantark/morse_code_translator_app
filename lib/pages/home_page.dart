@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/morse_audio_service.dart';
 import 'translator_page.dart';
-import 'alphabet_page.dart';
-import 'number_page.dart';
-import 'punctuation_page.dart';
+import 'chart_page.dart';
 import 'learn_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,7 +19,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -44,9 +42,7 @@ class _HomePageState extends State<HomePage>
         controller: _tabController,
         children: [
           TranslatorPage(audioService: _audioService),
-          AlphabetPage(audioService: _audioService),
-          NumberPage(audioService: _audioService),
-          PunctuationPage(audioService: _audioService),
+          ChartPage(audioService: _audioService),
           LearnPage(audioService: _audioService),
         ],
       ),
@@ -57,12 +53,9 @@ class _HomePageState extends State<HomePage>
           labelColor: Colors.black,
           unselectedLabelColor: Colors.grey,
           indicatorColor: Colors.blue,
-          labelStyle: const TextStyle(fontSize: 11),
           tabs: const [
             Tab(icon: Icon(Icons.translate), text: "Translator"),
-            Tab(icon: Icon(Icons.sort_by_alpha), text: "Alphabet"),
-            Tab(icon: Icon(Icons.looks_one), text: "Numbers"),
-            Tab(icon: Icon(Icons.tag), text: "Punctuation"),
+            Tab(icon: Icon(Icons.table_chart), text: "Chart"),
             Tab(icon: Icon(Icons.school), text: "Learn"),
           ],
         ),
